@@ -52,14 +52,19 @@ func main() {
 			if err != nil {
 				log.Fatal(err)
 			}
+		} else {
+			log.Fatal("Other equipment active, skipping fan hold.")
 		}
 	} else {
 		// Only resume if the fan is the only thing running.
 		if status.EquipmentStatus == "fan" {
+			fmt.Println("Resuming program.")
 			err = fanClient.Resume()
 			if err != nil {
 				log.Fatal(err)
 			}
+		} else {
+			log.Fatal("EquipmentStatus is not 'fan' only; skipping program resume.")
 		}
 	}
 }

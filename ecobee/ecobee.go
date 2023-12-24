@@ -28,7 +28,7 @@ type EcobeeThermostat struct {
 	Name            string        `json:"name"`
 	Runtime         EcobeeRuntime `json:"runtime"`
 	EquipmentStatus string        `json:"equipmentStatus"`
-	Time            string        `json:"utcTime"`
+	Time            string        `json:"thermostatTime"`
 }
 
 type EcobeeRuntime struct {
