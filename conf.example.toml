@@ -1,4 +1,8 @@
 AwairUrl = "http://awair-elem-XXXXXX.local/air-data/latest"
 VocLimit = 300
 PmLimit = 30
+CO2Limit = 1500
+EcobeeBaseUrl = "https://api.ecobee.com/"
+EcobeeApiKey = ""
+EcobeeRefreshToken = ""
 FanTime = 30
