@@ -46,14 +46,9 @@ func main() {
 	// Check limits
 	if data.CO2 > conf.CO2Limit || data.VOC > conf.VocLimit || data.PM25 > conf.PmLimit {
 		fmt.Printf("Fan on. CO2: %d; VOC: %d; PM25: %d\n", data.CO2, data.VOC, data.PM25)
-		// Only hold if fan not already running.
-		if status.EquipmentStatus == "" {
-			err = fanClient.FanOn(*status, status.Time, 30)
-			if err != nil {
-				log.Fatal(err)
-			}
-		} else {
-			log.Fatal("Other equipment active, skipping fan hold.")
+		err = fanClient.FanOn(*status, status.Time, conf.FanTime)
+		if err != nil {
+			log.Fatal(err)
 		}
 	} else {
 		// Only resume if the fan is the only thing running.
