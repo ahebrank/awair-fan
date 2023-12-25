@@ -22,14 +22,15 @@ type Config struct {
 }
 
 func main() {
+	sensorOnlyFlag := flag.Bool("s", false, "Sensor output only, no fan trigger")
+	confPathFlag := flag.String("c", "./conf.toml", "Path to configuration file")
+	flag.Parse()
+
 	var conf Config
-	_, err := toml.DecodeFile("conf.toml", &conf)
+	_, err := toml.DecodeFile(*confPathFlag, &conf)
 	if err != nil {
 		log.Fatal(err)
 	}
-
-	sensorOnlyFlag := flag.Bool("s", false, "Sensor output only, no fan trigger")
-	flag.Parse()
 
 	sensorClient := awair.NewClient(conf.AwairUrl)
 	data, err := sensorClient.Get()
